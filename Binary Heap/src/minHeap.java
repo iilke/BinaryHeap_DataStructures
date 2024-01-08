@@ -1,6 +1,6 @@
 public class minHeap {
     private int[] arr;
-    private int top = 0;
+    private int top = 1;
     public minHeap() {
         this.arr = new int[20];
     }
@@ -17,12 +17,24 @@ public class minHeap {
     }
 
     private void swimRecursive( int index ) {
-// You will implement this method RECURSIVELY!
-// Method takes an item index and swims the item up in the tree
+        if(arr[index/2] < arr[index]){
+            return;
+        }
+        else{
+            if(index>0){
+                int temp = arr[index/2];
+                arr[index/2] = arr[index];
+                arr[index] = temp;
+                swimRecursive(index/2);
+            }
+
+        }
     }
-    public String removeMin() {
-// You will implement this method
-// Method removes and returns the minimum element from the tree
+    public int removeMin() {
+        int min = arr[1];
+        arr[1] = arr[top];
+        
+        return min;
     }
     private void sinkRecursive( int index ) {
 // You will implement this method RECURSIVELY!
@@ -37,7 +49,11 @@ public class minHeap {
 // Method takes an item index, a String and updates the item’s value
     }
     public void print() {
-
+        for (int i = 0; i < top; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
     }
+
 }
 
